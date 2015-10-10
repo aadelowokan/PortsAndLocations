@@ -1,0 +1,26 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf110
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 The end goal was to find a way to some how compare the minimum distance for each location and the amount of produce each location generates to find out which one of them would be the most cost effective.\
+\
+I made a number of assumptions during the whole development of my solution.\
+I assumed that each longitude and latitude were just mere points, which means to calculate the distance between each point I could utilise the distance formula. Therefore I created a function that would calculate the distance between 2 points(longitude and latitude) and return the result.\
+\
+The next step was to read in the database table and make sure I was able to pull out the information that is stored in the tables.\
+\
+The next step was to find a way to store the distance for each location to each port.\
+Here I utilised a numpy 2d array, a for loop within a for loop to go through each location and calculate the distance to each of the ports and store the result in the said array.\
+With the in built numpy function, I am able to fid the min distance needed to travel to get to a port for each of the location.\
+At this point I went back to add the amount of raw material produced at each location into the numpy array after the distance to the 3 ports have been calculated and stored.\
+\
+At this point I am able to print the min distance needed to travel to get to a port value and the amount of produce made at the location.\
+\
+Here I made another assumption that there isn\'92t a limit on the amount a truck can carry from a location to a port.\
+In regards calculation of the location and port that would be the most transport effective, I went with this approach:\
+	- if you have 100 tonnes and have to travel 10kms\
+	- you divided 100 tonnes by 10 kms, therefore you will be transporting the raw material at a rate 	of 10 tonnes per km\
+\
+This led to use the approach of creating a numpy array that stores the division of the amount of raw material by the min distance to a port. Here I am able to pull out the position of the maximum value which maps to the location. To get the port I have to loop through that section of the numpy array that holds the distances and compare it to the current minimum I have which will in turn show the port.}
