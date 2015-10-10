@@ -23,4 +23,6 @@ In regards calculation of the location and port that would be the most transport
 	- if you have 100 tonnes and have to travel 10kms\
 	- you divided 100 tonnes by 10 kms, therefore you will be transporting the raw material at a rate 	of 10 tonnes per km\
 \
-This led to use the approach of creating a numpy array that stores the division of the amount of raw material by the min distance to a port. Here I am able to pull out the position of the maximum value which maps to the location. To get the port I have to loop through that section of the numpy array that holds the distances and compare it to the current minimum I have which will in turn show the port.}
+The next part was to calculate the total amount of tonne that would be transported from the 9 other locations to the one location while taking the distance in account, utilising the above calculation. Also made an assumption that the distance from the point to itself will be 1 to avoid any more complications in the algorithm used.\
+\
+At this point, I am able to pick the port with the maximum amount of resources per distance unit. Which in turn points out the location and to which port is the closest to that location as we found out earlier.}

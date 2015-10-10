@@ -23,9 +23,11 @@ with con:
     
     cur = con.cursor()
     
+    ports = np.zeros((3,2))
     cur.execute("SELECT * FROM ports;")    
     ports = cur.fetchall()
     
+    locations = np.zeros((10, 3))
     cur.execute("SELECT * FROM location;")
     locations = cur.fetchall()
     
@@ -45,24 +47,45 @@ with con:
         i += 1
     
     i = 0
+    location_distance = np.zeros((10,1))
+    # when adding efficency
+    # when location
+    for location in locations:
+        j = 0
+        for loca in locations:
+            # when location is on itself, it considers the distance as 1
+            # else it calculates the distance and then divides it into the amount of 
+            # raw material generated at the location to get distance effiency
+            if(location[0] == loca[0] and location[1] == loca[1]):
+                location_distance[i][0] += location[2] / 1
+            else:
+                location_distance[i][0] += location[2] / distance(location[0], location[1], loca[0], loca[1])
+            j += 1
+        i += 1
+    
+    i = 0
     # numpy array
     array = np.zeros(10)
     
     # for loop to calculate the rate which the material will be transported
     # in relation to the min distance needed to travel to get to a port
     for row in dista:
-        array[i] = dista[i, 3]/dista[i,:].min()
+        array[i] = location_distance[i,0]/dista[i,:].min()
         i+=1
+    
+    print array
+    
+    l = array.argmax()
         
     # print the location number
-    print "Location number ", array.argmax()
+    print "Locatio's Longitude and Latitude ", locations[l][0], locations[l][1]
 
     i = 0
     # for loop to compare the min distance for that location to each one
     # in order to get the port number
     for x in range(3):
-        if(dista[array.argmax(), i] == dista[array.argmax(),:].min()):
-            print "Port number ", i
+        if(dista[l, i] == dista[l,:].min()):
+            print "Port's Longitude and Latitude", ports[i][0], ports[i][1]
         i += 1
     
 con.close()
