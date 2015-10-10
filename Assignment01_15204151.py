@@ -68,21 +68,20 @@ with con:
     array = np.zeros(10)
     
     # for loop to calculate the rate which the material will be transported
-    # in relation to the min distance needed to travel to get to a port
+    # in relation to the minimum distance needed to travel to get to a port
     for row in dista:
-        array[i] = location_distance[i,0]/dista[i,:].min()
+        array[i] = location_distance[i,0] / dista[i,:].min()
         i+=1
     
-    print array
-    
+    # the port with max resources per unit distance
     l = array.argmax()
         
-    # print the location number
+    # print the location's coordinates
     print "Locatio's Longitude and Latitude ", locations[l][0], locations[l][1]
 
     i = 0
     # for loop to compare the min distance for that location to each one
-    # in order to get the port number
+    # in order to get the port's coordinates
     for x in range(3):
         if(dista[l, i] == dista[l,:].min()):
             print "Port's Longitude and Latitude", ports[i][0], ports[i][1]

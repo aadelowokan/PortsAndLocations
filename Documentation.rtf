@@ -4,10 +4,16 @@
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\f0\fs24 \cf0 The end goal was to find a way to some how compare the minimum distance for each location and the amount of produce each location generates to find out which one of them would be the most cost effective.\
+\f0\fs24 \cf0 Assignment 01 - Documentation\
 \
-I made a number of assumptions during the whole development of my solution.\
-I assumed that each longitude and latitude were just mere points, which means to calculate the distance between each point I could utilise the distance formula. Therefore I created a function that would calculate the distance between 2 points(longitude and latitude) and return the result.\
+Assumptions made:\
+- longitude and latitude, therefore flat plane\
+- transportation is done in straight lines, i.e. can use the distance formula \
+- no limit to the amount of resources that can be transported (one trip can empty a location), this allowed me utilise the formula (resource amount / distance) which results in the resource per unit distance\
+\
+The end goal was to find a way to some how compare the minimum distance for each location to a port. Also to calculate the total resource per unit distance for the other 9 location for each location. I can then chose the location with the highest resource per unit distance.\
+\
+I created a function that would calculate the distance between 2 points(longitude and latitude) and return the result.\
 \
 The next step was to read in the database table and make sure I was able to pull out the information that is stored in the tables.\
 \
@@ -16,13 +22,8 @@ Here I utilised a numpy 2d array, a for loop within a for loop to go through eac
 With the in built numpy function, I am able to fid the min distance needed to travel to get to a port for each of the location.\
 At this point I went back to add the amount of raw material produced at each location into the numpy array after the distance to the 3 ports have been calculated and stored.\
 \
-At this point I am able to print the min distance needed to travel to get to a port value and the amount of produce made at the location.\
+I am now able to print the minimum distance needed to travel to get to a port and the amount of produce made at the location.\
 \
-Here I made another assumption that there isn\'92t a limit on the amount a truck can carry from a location to a port.\
-In regards calculation of the location and port that would be the most transport effective, I went with this approach:\
-	- if you have 100 tonnes and have to travel 10kms\
-	- you divided 100 tonnes by 10 kms, therefore you will be transporting the raw material at a rate 	of 10 tonnes per km\
+The next part was to calculate the total amount of tonne that would be transported from the 9 other locations to the one location while taking the distance in account, utilising the above calculation. Also made an assumption that the distance from the point to itself will be 1 to avoid any more complications in the algorithm used and also the addition of the locations resources to the total.\
 \
-The next part was to calculate the total amount of tonne that would be transported from the 9 other locations to the one location while taking the distance in account, utilising the above calculation. Also made an assumption that the distance from the point to itself will be 1 to avoid any more complications in the algorithm used.\
-\
-At this point, I am able to pick the port with the maximum amount of resources per distance unit. Which in turn points out the location and to which port is the closest to that location as we found out earlier.}
+At this point, I am able to pick the port with the maximum amount of resources per distance unit, based on that information I can now pull the longitude and the latitude of the location and the port.}
